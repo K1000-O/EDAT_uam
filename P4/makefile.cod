@@ -1,0 +1,33 @@
+#
+#	MACROS
+#
+CC=gcc
+CFLAGS = -g -Wall -Wextra -pedantic -ansi
+	
+#
+#	EJECUTABLE
+#
+menu: menu.o utils.o
+	$(CC) -o $@ $^
+	
+#
+#	OBJETOS
+#
+utils.o: utils.c utils.h
+	$(CC) $(CFLAGS) -c $<
+
+menu.o: menu.c utils.h
+	$(CC) $(CFLAGS) -c $<
+	
+#
+#	LIMPIEZA
+#
+clean:
+	rm -f *.o
+
+#
+#	COMANDO PARA EJECUTAR EL MENU
+#
+run:
+	@echo "#### EJECUTANDO EL MENU"
+	@./menu
