@@ -12,6 +12,7 @@ int main() {
     strcpy(b->book_id, "BAR2");
     b->title_len = PK_SIZE;
     b->title = (char*) malloc (sizeof(char) * 10);
+    strcpy(b->lang, "ES");
     strcpy(b->title, "Hola k");
     
     printf("-----Original tree-------\n");

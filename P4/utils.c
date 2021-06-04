@@ -182,7 +182,7 @@ bool addTableEntry(Book *book, const char *tableName, const char *indexName) {
             return false;
         }
 
-        fwrite(book->book_id, sizeof(char), 4, fichero);
+        fwrite(book->book_id, sizeof(char), PK_SIZE, fichero);
         fwrite(&book->title_len, sizeof(int), 1, fichero);
         fwrite(book->title, sizeof(char), book->title_len, fichero);
 
@@ -191,7 +191,7 @@ bool addTableEntry(Book *book, const char *tableName, const char *indexName) {
 
     /*offset: es el nodeIdOrDataOffset*/
     /*actualizar index*/
-	return addIndexEntry(book->book_id, nodeIDOrDataOffset, indexName);
+	return addIndexEntry(strcat(book->lang, book->book_id), nodeIDOrDataOffset, indexName);
 }
 
 /**
@@ -231,7 +231,7 @@ bool addIndexEntry (char* book_id, int bookOffset, const char* indexName) {
     fread(&borrado, sizeof(int), 1, fichero);
 
 	/* Si existe un nodo borrado, lo buscamos e introducimos el nuevo en ese hueco. Sino, escribimos en el final del fichero. */
-    if (borrado != -1) {
+    if (borrado != -1) {		
         fseek(fichero, nodeIDOrDataOffset*20+8, SEEK_SET);
         fread(padre, sizeof(padre), 1, fichero);
        

@@ -23,7 +23,7 @@ typedef struct book {
 	char book_id[PK_SIZE]; /* primary key */
 	size_t title_len; /* title length */
 	char* title ; /* string to be saved in the database */
-	// char lang[LANG_SIZE]; /* Añadido para meter la lengua "clave secundaria". */
+	char lang[LANG_SIZE]; /* Añadido para meter la lengua "clave secundaria". */
 } Book;
 
 /* Note that in general a struct cannot be used to
@@ -31,7 +31,7 @@ typedef struct book {
 	is unknown at compilation time .
 */
 typedef struct node {
-	char book_id[PK_SIZE]; // ?? + LANG_SIZE
+	char book_id[PK_SIZE]; /* ?? + LANG_SIZE */
 	int left, right, parent, offset;
 } Node;
 
